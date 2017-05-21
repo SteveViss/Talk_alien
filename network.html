@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Network | Circular images</title>
+
+  <style type="text/css">
+    #graph {
+      width: 100%;
+      height: 500px;
+      background-color: none;
+      border-radius: 25px;
+    }
+  </style>
+
+  <script type="text/javascript" src="./bower_components/vis/dist/vis.min.js"></script>
+  <link href="./bower_components/vis/dist/vis-network.min.css" rel="stylesheet" type="text/css" />
+
+  <script type="text/javascript">
+    var nodes = null;
+    var edges = null;
+    var network = null;
+
+    // Called when the Visualization API is loaded.
+    function draw() {
+      // create people.
+      // value corresponds with the age of the person
+      var DIR = './img/members/';
+
+      nodes = [{
+        id: 1,
+        shape: 'circularImage',
+        image: DIR + 'gravel.png',
+        label: "Dominique Gravel \n(UdS)"
+      }, {
+        id: 2,
+        shape: 'circularImage',
+        image: DIR + 'kev.jpg',
+        label: "Kévin Cazelles \n(UdS)"
+      }, {
+        id: 3,
+        shape: 'circularImage',
+        image: DIR + 'steve.png',
+        label: "Steve Vissault \n(UdS)"
+      }, {
+        id: 4,
+        shape: 'circularImage',
+        image: DIR + 'David.jpg',
+        label: "David Beauchesne \n(ULaval)"
+      }, {
+        id: 5,
+        shape: 'circularImage',
+        image: DIR + 'besson.jpeg',
+        label: "Mathilde Besson \n(UdM)"
+      }, {
+        id: 6,
+        shape: 'circularImage',
+        image: DIR + 'nachoM.jpeg',
+        label: "Ignacio Moralles-C. \n(Harvard)"
+      }, {
+        id: 7,
+        shape: 'circularImage',
+        image: DIR + 'nachoB.png',
+        label: "Ignacio Bartomeus \n(EBD-CSIC)"
+      }, {
+        id: 8,
+        shape: 'circularImage',
+        image: DIR + 'benW.jpeg',
+        label: "Ben Weinstein \n(Oregon State University)"
+      }, {
+        id: 9,
+        shape: 'circularImage',
+        image: DIR + 'poisot.jpeg',
+        label: "Timothée Poisot \n(UdM)"
+      }, {
+        id: 10,
+        shape: 'circularImage',
+        image: DIR + 'blanchet.jpeg',
+        label: "Guillaume Blanchet \n(UdS)"
+      }, {
+        id: 11,
+        shape: 'box',
+        font: {
+          color: '#fff'
+        },
+        label: "Objectif: \nDévelopper une suite intégrative \nd'outils sous R pour prédire \nles interactions entre espèce"
+      }];
+
+      // create connections between people
+      // value corresponds with the amount of contact between two people
+      edges = [{
+        from: 1,
+        to: 11
+      }, {
+        from: 2,
+        to: 11
+      }, {
+        from: 3,
+        to: 11
+      }, {
+        from: 4,
+        to: 11
+      }, {
+        from: 5,
+        to: 11
+      }, {
+        from: 6,
+        to: 11
+      }, {
+        from: 7,
+        to: 11
+      }, {
+        from: 8,
+        to: 11
+      }, {
+        from: 9,
+        to: 11
+      }, {
+        from: 10,
+        to: 11
+      }];
+
+      // create a network
+      var container = document.getElementById('graph');
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+      var options = {
+        height: '100%',
+        width: '100%',
+        interaction: {
+          dragNodes: true,
+          dragView: false,
+          hideEdgesOnDrag: false,
+          hideNodesOnDrag: false,
+          hover: false,
+          hoverConnectedEdges: true,
+          zoomView: false,
+        },
+        nodes: {
+          borderWidth: 4,
+          size: 30,
+          shadow: true,
+          font: {
+            size: 14,
+            color: 'dark'
+          },
+          color: {
+            border: '#034370',
+            background: '#034370',
+            highlight: {
+              border: '#034370',
+              background: '#034370',
+            },
+          },
+        },
+        edges: {
+          color: '#034370',
+          width: 1,
+          dashes: true
+        },
+        physics: {
+          repulsion: {
+            centralGravity: 1.7
+          },
+          minVelocity: 0.75,
+          solver: "repulsion"
+        }
+      };
+      network = new vis.Network(container, data, options);
+    }
+  </script>
+
+</head>
+
+<body onload="draw()">
+
+  <div id="graph"></div>
+
+</body>
+
+</html>
