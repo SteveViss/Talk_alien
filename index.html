@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>alien: Prédire les interactions entre espèces</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+      <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+      <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css">
+
+      <style>
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i);
+      @import url(https://fonts.googleapis.com/css?family=Syncopate:400,700);
+
+
+      body {
+        font-family: 'Open Sans';
+        font-weight: 300 !important;
+        line-height: 2em;
+      }
+
+      h1 {
+        font-size: 1.5em !important;
+        font-family: 'Syncopate';
+        font-weight: normal;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+      }
+
+      h2, h3 {
+        font-size: 1.2em !important;
+        font-family: 'Open Sans';
+        font-weight: 300 !important;
+        margin-top: 10px;
+      }
+
+      .small {
+        font-size: 0.75em
+      }
+
+      .block {
+        padding-bottom: 30px;
+        padding-top: 30px
+      }
+
+      .transition {
+        background-color: #034370;
+        color: white !important;
+      }
+
+      .transition h1 {
+        color: white !important;
+        font-size: 2em !important;
+      }
+
+      .transition h2 {
+        font-size: 1.5em !important;
+      }
+
+      .slides {
+        margin: 40px 30px 10px 30px !important;
+      }
+
+      .slides h1{
+        color: #034370;
+      }
+
+      .slides h2 {
+        margin-bottom: 1.5em;
+      }
+
+      .slides h4 {
+        font-family: 'Open Sans' !important;
+        font-weight: 300 !important;
+        font-size: 20px;
+        margin-bottom: 20px;
+        color:#034370
+      }
+
+      .remark-slide-number {
+        font-size:12px;
+      }
+
+
+
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+    class: center, middle, transition, container-fluid
+    count: false
+
+
+    .row[
+
+    .col-md-5.text-right[
+
+      ![:scale 80%](./img/network_bg.png)
+
+    ]
+
+    .col-md-7.text-left[
+
+      # Alien
+
+      ## Prédire les interactions entre espèces avec R
+
+
+    .block[
+      Par Steve Vissault <i class="fa fa-github"></i> <i class="fa fa-twitter"></i> <i class="fa fa-web"></i>  
+      .small[Éco-informaticien,  
+      [Chaire de recherche en Écologie Intégrative](https://ielab.recherche.usherbrooke.ca)]  
+    ]
+
+    .block[
+    ![:scale 30%](./img/uds.png)  ![:scale 20%](./img/csbq.png)
+    ]
+    ]
+
+    ]
+
+    ---
+
+    class: slides
+
+    # Mise en contexte
+    ## Les réseaux: une façon d'abstraire le monde
+
+    .row[
+
+    .col-md-4.text-center[
+      #### Réseau de transport
+      <hr style="background-color:#034370;height: 1px; border: 0;width: 75%">
+      ![:scale 100%](./img/metro.jpg)
+    ]
+    .col-md-4.text-center[
+      #### Réseau sociaux
+      <hr style="background-color:#034370;height: 1px; border: 0;width: 75%">
+      ![:scale 100%](./img/network_facebook.png)
+    ]
+    .col-md-4.text-center[
+      #### Réseau paysager
+      <hr style="background-color:#034370;height: 1px; border: 0;width: 75%">
+      <img src="./img/network_landscape.png" height="300px"></img>
+    ]
+
+    ]
+
+
+    ???
+    Les réseaux sont une façon de représenter de représenter le monde. Il en existe une diversité: les réseaux ferroviaires, sociaux, l'échelle du paysage
+
+    ---
+
+    class: slides
+
+    # Définition d'un réseau
+    ## Une sémantique conjointe
+
+    .row[
+    .col-md-6.text-center[
+    ![:scale 80%](./img/network.png)
+    ]
+    .col-md-6[
+    - Théorie des graphes
+    - Bien connus dans les disciplines de l'informatique et des mathématiques
+    - Un graphe est un assemblage de **noeuds** reliés par des **liens**
+    - De nombreuses innovations pour prédire les potentielles liens entre les noeuds.
+    ]
+    ]
+
+    ???
+    Les réseaux partagent tous une sémantique conjointe: des noeuds et des liens
+
+
+    ---
+
+    class: slides
+
+    # Définition d'un réseau
+    ## Les noeuds possèdent des propriétés
+
+    .row[
+    .col-md-6.text-right[
+    ### Si l'on prend un réseau social tel que Facebook...
+    <br>
+    ![:scale 50%](./img/proprietes.png)
+    ]
+    .col-md-6.text-center[
+    ![:scale 80%](./img/network_face1.png)
+    ]
+    ]   
+
+    ---
+
+    class: slides
+
+    # Définition d'un réseau
+    ## Les noeuds possèdent des propriétés
+    .row[
+    .col-md-6[
+    .col-md-12[
+    - ### A partir des propriétés, il est possible de suggérer des liens.
+    ]
+    .col-md-12[
+    - ### Quelle est la probabilité qu'une nouvelle publiée par moi (Steve) se retrouve sur le fil d'actualité Facebook de Julie?
+    ]
+    ]
+    .col-md-6[
+    .col-md-12.text-center[
+    ![:scale 85%](./img/network_face2.png)
+    ]
+    ]
+    ]
+
+    ---
+
+    class: slides
+
+    # Cadre prédictif
+    ## Suggérer un lien à partir des propriétés d'un noeud
+
+    .row[
+    .col-md-5.text-left[
+    $$\sum_{lien=e} u_e w_e d_e$$
+
+    **Où:**
+
+    - `\(u_e\)` est le score d'affinité entre l'utilisateur regardant et l'utilisateur ayant posté la nouvelle
+    - `\(w_e\)` le poid attribué à ce type de nouvelle
+    - `\(d_e\)` le temps depuis la création de la nouvelle
+
+    ]
+
+    .col-md-7.text-center[
+    ![:scale 100%](./img/edgerank2.jpg)
+    ]
+    ]
+
+    ---
+
+    class: slides
+
+    # Cadre prédictif
+
+    .row[
+    .col-md-12.text-center[
+    ## Ce type d'algorithms de rangs sont répandus à travers de nombreuses plateformes.
+    ]
+    .col-md-6.text-center[
+    ![:scale 40%](./img/netflix_logo.png)
+    ]
+    .col-md-6.text-center[
+    ![:scale 40%](./img/amazon_logo.jpg)
+    ]
+    ]
+    .row[
+    .col-md-6.text-center[
+    ![:scale 90%](./img/netflix.png)
+    ]
+    .col-md-6.text-center[
+    ![:scale 90%](./img/amazon.png)
+    ]
+    ]
+
+
+    ---
+
+    class: slides, transition, middle
+
+    .row[
+    .col-md-7[
+    #Écologie
+    ## Peux-t-on faire la même chose en écologie?
+    ]
+    .col-md-5[
+    ![:scale 100%](./img/network_bg.png)
+    ]
+    ]
+
+    ???
+    ### *C'est à dire, à partir d'informations écologiques existantes, suggérer des liens/interactions entre espèces sous forme de probabilités?*
+
+
+
+    ---
+
+    class: slides
+
+    # Le projet Alien...
+    ### Une initiative d'un réseau de collaborateurs
+
+    <iframe src="./network.html" width="100%" height="500px" frameBorder="0"></iframe>
+
+
+
+    ---
+
+    # Challenge
+
+    - Challenge 1: Hétérogénéité des données
+    - Challenge 2: Diversité des méthodes
+
+    ???
+    Introduction aux challenges
+    Diversité de méthodes
+    Ces challenges ne sont pas inhérent au domaine de l'écologie
+
+    ---
+
+    # Alien est un package R qui vise à remplir ces deux défis
+
+
+    illustration du pipeline
+
+
+    ---
+
+
+    ???
+
+    1. Qu'est ce qu'un réseau?
+      - Réseau électrique (stations, transformateurs, maison)
+      - Réseau sociaux (facebook)
+      - Réseau ferovière
+      - Réseau de protéine: https://academic.oup.com/bioinformatics/article/22/13/1623/193937/Exploiting-indirect-neighbours-and-topological
+
+    2. Définition d'un noeud et d'un lien
+
+    3. Prédire à partir des propriétés des noeuds
+
+    Algorithme Facebook: suggestion d'ami
+    Algorithme Netflix: suggestion de film
+
+    4. En écologie, on a des réseaux.
+    Définir les réseaux
+
+    5. Problématiques, nos espèces ne sont pas informatisés
+    Manque de données
+
+    6. Comment prédire les interactions?
+
+    Ce servir des propriétés des noeuds déjà connues pour inférer sur l'interaction
+
+    Qu'elles sont les informations connus:
+
+      - Traits
+      - Phylogénie
+      - Environnement
+      - Co-occurence
+      - Co-abundance
+
+    8. La recherche est florissante dans le domaine:
+
+    Diversité des méthodes
+
+    7. En plus du manque de données
+
+      Problèmes: diversité des formats (ontologie distincte)
+      diversité des outils
+
+    8. alien, des données structurées pour un pipeline d'analyse facilitée
+
+    9 Présentation de alienData
+
+    10. Présentation
+
+    11. Implication pour la recherche
+
+    - Reconstruire les réseaux (contexte de CC, réassemblage des communautées)
+    - Espèces invasives via similiarité écologique
+    - Extinction locale
+    - Invasion
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+
+    <script>
+
+    remark.macros.scale = function (percentage) {
+      var url = this;
+      return '<img src="' + url + '" style="width: ' + percentage + '" />';
+      };
+
+    var slideshow = remark.create();
+
+        // Setup MathJax
+    MathJax.Hub.Config({
+        tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+
+    MathJax.Hub.Configured();
+
+    </script>
+  </body>
+</html>

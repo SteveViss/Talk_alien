@@ -1,0 +1,30 @@
+{
+  "name": "Talk_alien",
+  "homepage": "https://steveviss.github.io/Talk_alien",
+  "authors": [
+    "Steve Vissault <s.vissault@yahoo.fr>"
+  ],
+  "description": "Conference at R Congress (may 26th 2017) on alien package",
+  "main": "index",
+  "keywords": [
+    "congress",
+    "talk",
+    "predict",
+    "interactions",
+    "species"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vis": "^4.19.1",
+    "font-awesome": "^4.7.0",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1"
+  }
+}
