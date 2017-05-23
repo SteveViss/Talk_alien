@@ -132,19 +132,21 @@
     .row[
 
     .col-md-4.text-center[
-      #### Réseau de transport
+      #### Réseaux de transports
       <hr style="background-color:#034370;height: 1px; border: 0;width: 75%">
       ![:scale 100%](./img/metro.jpg)
+      <!-- TODO: mettre réseau de bus de Québec -->
     ]
     .col-md-4.text-center[
-      #### Réseau sociaux
+      #### Réseaux sociaux
       <hr style="background-color:#034370;height: 1px; border: 0;width: 75%">
       ![:scale 100%](./img/network_facebook.png)
     ]
     .col-md-4.text-center[
-      #### Réseau paysager
+      #### Réseaux trophiques
       <hr style="background-color:#034370;height: 1px; border: 0;width: 75%">
       <img src="./img/network_landscape.png" height="300px"></img>
+        <!-- TODO: mettre réseau trophique -->
     ]
 
     ]
@@ -166,9 +168,9 @@
     ]
     .col-md-6[
     - Théorie des graphes
-    - Bien connus dans les disciplines de l'informatique et des mathématiques
+    - Connus dans les disciplines de l'informatique et des mathématiques
     - Un graphe est un assemblage de **noeuds** reliés par des **liens**
-    - De nombreuses innovations pour prédire les potentielles liens entre les noeuds.
+    - Un interêt en science pour prédire les potentielles liens entre les noeuds
     ]
     ]
 
@@ -191,8 +193,14 @@
     ]
     .col-md-6.text-center[
     ![:scale 80%](./img/network_face1.png)
+    <!-- TODO: mettre un point d'interrogation sur un lien -->
     ]
     ]   
+    ---
+
+    class: slides, transition
+
+    # Les propriétés des noeuds
 
     ---
 
@@ -203,7 +211,7 @@
     .row[
     .col-md-6[
     .col-md-12[
-    - ### A partir des propriétés, il est possible de suggérer des liens.
+    -
     ]
     .col-md-12[
     - ### Quelle est la probabilité qu'une nouvelle publiée par moi (Steve) se retrouve sur le fil d'actualité Facebook de Julie?
@@ -215,6 +223,12 @@
     ]
     ]
     ]
+
+    ---
+
+    class: slides, transition
+
+    # Les propriétés des noeuds
 
     ---
 
@@ -284,7 +298,35 @@
     ???
     ### *C'est à dire, à partir d'informations écologiques existantes, suggérer des liens/interactions entre espèces sous forme de probabilités?*
 
+    ---
 
+    class: slides
+
+    # Les réseaux écologiques
+    ### Définition
+
+    - Image d'un réseau écologique (bartomeus, 2016)
+    - Les types d'interactions
+
+
+    ---
+
+    class: slides
+
+    # Les réseaux écologiques
+    ### Une diversité de méthodes
+
+    - Liste des méthodes (Liste sur Github)
+
+    ---
+
+    class: slides
+
+    # Les réseaux écologiques
+    ### Une diversité de méthodes
+
+    - Image des papiers
+    - Symboles sur chaque type de données
 
     ---
 
@@ -296,28 +338,44 @@
     <iframe src="./network.html" width="100%" height="500px" frameBorder="0"></iframe>
 
 
-
     ---
 
-    # Challenge
+    # Problématiques
 
-    - Challenge 1: Hétérogénéité des données
-    - Challenge 2: Diversité des méthodes
+    - Problématique 1: Hétérogénéité des données
+    - Problématique 2: Multiplicité des languages et des méthodes
+
 
     ???
     Introduction aux challenges
     Diversité de méthodes
-    Ces challenges ne sont pas inhérent au domaine de l'écologie
+    Ces challenges ne sont pas inhérent au domaine de l'écologie (transversale et présent dans d'autres disciplines).
+
+    ---
+
+    # Alien vise à remplir ces deux défis
+
+    - Réunir sous une même banière R
+    - Construire un package R
+    - Test unitaire
+    - Contrôle de version
+    - Checks CRAN
+    - Version préliminaire.
+
+    ---
+
+    # Alien: Objectifs
+
+
+    - Objectif 1: Contrôle de la structure et de la qualité des données
+    - Objectif 2: Réunir les différentes méthodes sous une même manière
 
     ---
 
     # Alien est un package R qui vise à remplir ces deux défis
+    ## Illustration du workflow
 
-
-    illustration du pipeline
-
-
-    ---
+    - Sc
 
 
     ???
