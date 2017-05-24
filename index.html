@@ -51,7 +51,7 @@
 
       .transition h1 {
         color: white !important;
-        font-size: 2em !important;
+        font-size: 1.5em !important;
       }
 
       .transition h2 {
@@ -82,6 +82,13 @@
         font-size:12px;
       }
 
+      .panel {
+        font-size: 0.80em !important;
+      }
+
+      .panel p {
+        margin-bottom: 0px;
+      }
 
 
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
@@ -143,10 +150,9 @@
       ![:scale 100%](./img/network_facebook.png)
     ]
     .col-md-4.text-center[
-      #### Réseaux trophiques
+      #### Réseaux écologiques
       <hr style="background-color:#034370;height: 1px; border: 0;width: 75%">
-      <img src="./img/network_landscape.png" height="300px"></img>
-        <!-- TODO: mettre réseau trophique -->
+      ![:scale 80%](./img/network_plantpol.png)
     ]
 
     ]
@@ -170,35 +176,19 @@
     - Théorie des graphes
     - Connus dans les disciplines de l'informatique et des mathématiques
     - Un graphe est un assemblage de **noeuds** reliés par des **liens**
-    - Un interêt en science pour prédire les potentielles liens entre les noeuds
+    - Un interêt en science pour prédire les potentiels liens entre les noeuds
+    - alien: alien species (OVNI AVEC UNE ESPÈCE QUI SORT), reconstruire les liens
     ]
     ]
 
     ???
     Les réseaux partagent tous une sémantique conjointe: des noeuds et des liens
+    Vérifier graph E
 
 
     ---
 
-    class: slides
-
-    # Définition d'un réseau
-    ## Les noeuds possèdent des propriétés
-
-    .row[
-    .col-md-6.text-right[
-    ### Si l'on prend un réseau social tel que Facebook...
-    <br>
-    ![:scale 50%](./img/proprietes.png)
-    ]
-    .col-md-6.text-center[
-    ![:scale 80%](./img/network_face1.png)
-    <!-- TODO: mettre un point d'interrogation sur un lien -->
-    ]
-    ]   
-    ---
-
-    class: slides, transition
+    class: slides, middle, transition
 
     # Les propriétés des noeuds
 
@@ -206,29 +196,163 @@
 
     class: slides
 
-    # Définition d'un réseau
-    ## Les noeuds possèdent des propriétés
+    # Les propriétés des noeuds
+    ## Les réseaux sociaux
+
     .row[
     .col-md-6[
-    .col-md-12[
-    -
-    ]
-    .col-md-12[
-    - ### Quelle est la probabilité qu'une nouvelle publiée par moi (Steve) se retrouve sur le fil d'actualité Facebook de Julie?
-    ]
+    Chaque membre d'un réseau dispose de propriétés qui le définisse:
+
+    - Âge
+    - Sexe
+    - Lieu de naissance
+    - Profession
+    - Études etc.
+
     ]
     .col-md-6[
-    .col-md-12.text-center[
     ![:scale 85%](./img/network_face2.png)
     ]
     ]
+
+    ---
+
+    class: slides
+    count: false
+
+    # Les propriétés des noeuds
+    ## Les réseaux écologiques
+
+    .row[
+    .col-md-6[
+    #### Réseau plantes-pollinisateur
+    ![:scale 60%](./img/network_plantpol.png)
+
+    .small[Bartomeus *et al*, 2017]
+
+    ]
+    .col-md-6[
+    ]
     ]
 
     ---
 
-    class: slides, transition
+    class: slides
 
     # Les propriétés des noeuds
+    ## Les réseaux écologiques
+
+    .row[
+    .col-md-6[
+    #### Réseau plantes-pollinisateur
+    ![:scale 60%](./img/network_plantpol.png)
+
+    .small[Bartomeus *et al*, 2017]
+
+    ]
+    .col-md-6[
+    .col-md-12[
+    .panel.panel-info[
+    .panel-heading[
+    ![:scale 10%](./img/phylo.png) Phylogénie
+    ]
+    .panel-body[
+    Indique le degré de parenté d'un organisme avec les autres organismes du réseau (distance génétique)
+    ]
+    ]
+    ]
+    ]
+    ]
+
+    ---
+
+    class: slides
+    count: false
+
+    # Les propriétés des noeuds
+    ## Les réseaux écologiques
+
+    .row[
+    .col-md-6[
+    #### Réseau plantes-pollinisateur
+    ![:scale 60%](./img/network_plantpol.png)
+
+    .small[Bartomeus *et al*, 2017]
+
+    ]
+    .col-md-6[
+    .col-md-12[
+    .panel.panel-info[
+    .panel-heading[
+    ![:scale 10%](./img/phylo.png) Phylogénie
+    ]
+    .panel-body[
+    Indique le degré de parenté d'un organisme avec les autres organismes du réseau (distance génétique)
+    ]
+    ]
+    .panel.panel-warning[
+    .panel-heading[
+    ![:scale 10%](./img/trait.png) Traits
+    ]
+    .panel-body[
+    Mesure prise sur un organisme (i.e. Taille des ailes, Type d'appareil bucaux etc.)
+    ]
+    ]
+    ]
+    ]
+    ]
+
+    ---
+
+    class: slides
+    count: false
+
+    # Les propriétés des noeuds
+    ## Les réseaux écologiques
+
+    .row[
+    .col-md-6[
+    #### Réseau plantes-pollinisateur
+    ![:scale 60%](./img/network_plantpol.png)
+
+    .small[Bartomeus *et al*, 2017]
+
+    ]
+    .col-md-6[
+    .col-md-12[
+    .panel.panel-info[
+    .panel-heading[
+    ![:scale 10%](./img/phylo.png) Phylogénie
+    ]
+    .panel-body[
+    Indique le degré de parenté d'un organisme avec les autres organismes du réseau (distance génétique)
+    ]
+    ]
+    .panel.panel-warning[
+    .panel-heading[
+    ![:scale 10%](./img/trait.png) Traits
+    ]
+    .panel-body[
+    Mesure prise sur un organisme (i.e. Taille des ailes, Type d'appareil bucaux etc.)
+    ]
+    ]
+    .panel.panel-success[
+    .panel-heading[
+    ![:scale 8%](./img/coOcc.png) Co-occurence et Co-abondance
+    ]
+    .panel-body[
+    L'organisme est présent au moment de l'échantillonnage parmis les organismes du réseau
+    ]
+    ]
+    ]
+    ]
+    ]
+
+    ---
+
+    class: slides, transition, middle
+
+    # Prédire à partir des propriétés
 
     ---
 
@@ -287,7 +411,7 @@
 
     .row[
     .col-md-7[
-    #Écologie
+    # Écologie
     ## Peux-t-on faire la même chose en écologie?
     ]
     .col-md-5[
@@ -297,6 +421,10 @@
 
     ???
     ### *C'est à dire, à partir d'informations écologiques existantes, suggérer des liens/interactions entre espèces sous forme de probabilités?*
+    Famille
+    - Machine learning: apprentissage supervisée, non-supervisées.
+    - Data-driven: Machine learning, Harris,
+    - Théorie-driven: Niche Binary, Niche probabilistic
 
     ---
 
