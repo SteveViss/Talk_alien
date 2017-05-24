@@ -88,6 +88,11 @@
 
       .panel p {
         margin-bottom: 0px;
+        line-height: 1.1em;
+      }
+
+      .slides u {
+        text-decoration: underline;
       }
 
 
@@ -170,14 +175,37 @@
 
     .row[
     .col-md-6.text-center[
-    ![:scale 80%](./img/network.png)
+    ![:scale 100%](./img/network.png)
     ]
     .col-md-6[
     - Théorie des graphes
     - Connus dans les disciplines de l'informatique et des mathématiques
     - Un graphe est un assemblage de **noeuds** reliés par des **liens**
-    - Un interêt en science pour prédire les potentiels liens entre les noeuds
-    - alien: alien species (OVNI AVEC UNE ESPÈCE QUI SORT), reconstruire les liens
+    ]
+    ]
+
+    ???
+    Les réseaux partagent tous une sémantique conjointe: des noeuds et des liens
+    Vérifier graph E
+
+    ---
+
+    class: slides
+
+    # Définition d'un réseau
+    ## Une sémantique conjointe
+
+    .row[
+    .col-md-6.text-center[
+    ![:scale 100%](./img/network2.png)
+    ]
+    .col-md-6[
+    #### **Pourquoi alien?**
+    Être en mesure d'évaluer les potentiels liens générés par l'arrivé d'une nouvelle espèce dans un réseau (*Invasive species*).
+
+    - Pertinent dans un contexte de changements climatiques où les espèces vont être amenées à se déplacer.
+    - On parle d'un réassemblage des communautés par perte ou gain en espèce
+
     ]
     ]
 
@@ -201,6 +229,9 @@
 
     .row[
     .col-md-6[
+    ![:scale 85%](./img/network_face2.png)
+    ]
+    .col-md-6[
     Chaque membre d'un réseau dispose de propriétés qui le définisse:
 
     - Âge
@@ -210,29 +241,6 @@
     - Études etc.
 
     ]
-    .col-md-6[
-    ![:scale 85%](./img/network_face2.png)
-    ]
-    ]
-
-    ---
-
-    class: slides
-    count: false
-
-    # Les propriétés des noeuds
-    ## Les réseaux écologiques
-
-    .row[
-    .col-md-6[
-    #### Réseau plantes-pollinisateur
-    ![:scale 60%](./img/network_plantpol.png)
-
-    .small[Bartomeus *et al*, 2017]
-
-    ]
-    .col-md-6[
-    ]
     ]
 
     ---
@@ -251,6 +259,7 @@
 
     ]
     .col-md-6[
+    #### Les propriétés des organismes
     .col-md-12[
     .panel.panel-info[
     .panel-heading[
@@ -281,6 +290,7 @@
 
     ]
     .col-md-6[
+    #### Les propriétés des organismes
     .col-md-12[
     .panel.panel-info[
     .panel-heading[
@@ -295,7 +305,7 @@
     ![:scale 10%](./img/trait.png) Traits
     ]
     .panel-body[
-    Mesure prise sur un organisme (i.e. Taille des ailes, Type d'appareil bucaux etc.)
+    Mesure qualitative ou quantitative prise sur un organisme (i.e. Taille des ailes, Type d'appareil bucal etc.)
     ]
     ]
     ]
@@ -319,6 +329,7 @@
 
     ]
     .col-md-6[
+    #### Les propriétés des organismes
     .col-md-12[
     .panel.panel-info[
     .panel-heading[
@@ -333,7 +344,7 @@
     ![:scale 10%](./img/trait.png) Traits
     ]
     .panel-body[
-    Mesure prise sur un organisme (i.e. Taille des ailes, Type d'appareil bucaux etc.)
+    Mesure qualitative ou quantitative prise sur un organisme (i.e. Taille des ailes, Type d'appareil bucal etc.)
     ]
     ]
     .panel.panel-success[
@@ -341,7 +352,7 @@
     ![:scale 8%](./img/coOcc.png) Co-occurence et Co-abondance
     ]
     .panel-body[
-    L'organisme est présent au moment de l'échantillonnage parmis les organismes du réseau
+    L'organisme est présent sur le site au moment de l'échantillonnage parmis les organismes du réseau.
     ]
     ]
     ]
@@ -352,29 +363,52 @@
 
     class: slides, transition, middle
 
-    # Prédire à partir des propriétés
+    # Comment prédire les liens à partir des propriétés des noeuds?
+
+    ---
+
+    class: slides
+
+    # Les propriétés des noeuds
+    ## Les réseaux sociaux
+
+    .row[
+    .col-md-6[
+    ![:scale 85%](./img/network_face3.png)
+    ]
+    .col-md-6[
+
+    Si je diffuse une nouvelle...
+
+    #### Est-ce que cette nouvelle sera visible sur le fil d'actualité de mes amis facebook (création d'un lien)?
+
+
+    ]
+    ]
 
     ---
 
     class: slides
 
     # Cadre prédictif
-    ## Suggérer un lien à partir des propriétés d'un noeud
+    ## Définir un lien à partir des propriétés d'un noeud
 
     .row[
-    .col-md-5.text-left[
+    .col-md-6.text-center[
+    ![:scale 100%](./img/edgerank2.jpg)
+    ]
+    .col-md-6.text-left[
+
+    #### Simple algorithme:
+
     $$\sum_{lien=e} u_e w_e d_e$$
 
-    **Où:**
+    Où:
 
-    - `\(u_e\)` est le score d'affinité entre l'utilisateur regardant et l'utilisateur ayant posté la nouvelle
-    - `\(w_e\)` le poid attribué à ce type de nouvelle
-    - `\(d_e\)` le temps depuis la création de la nouvelle
+    - `\(u_e\)` est le *score d'affinité* entre mon ami et moi (ayant posté la nouvelle)
+    - `\(w_e\)` le poid attribué à ce *type de nouvelle*
+    - `\(d_e\)` le *temps* depuis la création de la nouvelle
 
-    ]
-
-    .col-md-7.text-center[
-    ![:scale 100%](./img/edgerank2.jpg)
     ]
     ]
 
@@ -430,6 +464,79 @@
 
     class: slides
 
+    # Écologie
+    ## Peux-t-on prédire les liens à partir de la similarité entre espèces?
+
+    .row[
+    .col-md-12.text-center[
+    ![:scale 70%](./img/proba_simi2.png)
+    ]
+    ]
+
+
+    ???
+    ### *C'est à dire, à partir d'informations écologiques existantes, suggérer des liens/interactions entre espèces sous forme de probabilités?*
+    Famille
+    - Machine learning: apprentissage supervisée, non-supervisées.
+    - Data-driven: Machine learning, Harris,
+    - Théorie-driven: Niche Binary, Niche probabilistic
+
+    ---
+
+    class: slides
+
+    # Écologie
+    ## Peux-t-on prédire les liens à partir de la similarité entre espèces?
+
+    .row[
+    .col-md-6[
+
+    IMAGES DES PAPIERS?
+    AXE MULTVARIÉ?
+
+    ]
+    .col-md-6[
+
+    Il éxiste un grand nombre de méthodes pour dériver une probabilité d'interaction entre espèces
+
+    - Machine learning
+    - Orienté sur les données
+    - Orienté sur la théorie des réseaux écologiques
+
+    ]
+    ]
+
+    ---
+
+    class: slides, transition, middle
+
+    # Le projet Alien
+
+    ---
+
+    class: slides
+
+    # Le projet Alien...
+    ### Une initiative d'un réseau de collaborateurs
+
+    .row[
+    .col-md-8[
+    <iframe src="./network.html" width="100%" height="500px" frameBorder="0"></iframe>
+    ]
+    .col-md-4[
+
+    Premier atelier de travail en novembre 2016.  
+
+    #### **Deux grands défis**
+
+    1.
+    ]
+    ]
+
+    ---
+
+    class: slides
+
     # Les réseaux écologiques
     ### Définition
 
@@ -455,15 +562,6 @@
 
     - Image des papiers
     - Symboles sur chaque type de données
-
-    ---
-
-    class: slides
-
-    # Le projet Alien...
-    ### Une initiative d'un réseau de collaborateurs
-
-    <iframe src="./network.html" width="100%" height="500px" frameBorder="0"></iframe>
 
 
     ---
