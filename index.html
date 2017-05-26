@@ -45,6 +45,10 @@
         padding-top: 30px
       }
 
+      .block a {
+        color: white !important;  
+      }
+
       .transition {
         background-color: #034370;
         color: white !important;
@@ -141,8 +145,9 @@
 
 
     .block[
-      #### Par Steve Vissault,  
-      .small[M.Sc., Écoinformaticien,  
+      Par Steve Vissault .small[(M.Sc)],   
+      et Kévin Cazelles .small[(Ph.D)]
+      .small[  
       [Chaire de recherche en Écologie Intégrative](https://ielab.recherche.usherbrooke.ca)]  
     ]
 
@@ -196,7 +201,7 @@
     .col-md-6[
     - Théorie des graphs
     - Connus dans les disciplines de l'informatique et des mathématiques
-    - Un graphe est un assemblage de **noeuds** reliés par des **liens**
+    - Un graph est un assemblage de **noeuds** reliés par des **liens**
     ]
     ]
 
@@ -257,7 +262,7 @@
 
     class: slides
 
-    # Cadre prédictif
+    # Prédire un lien
     ## Définir un lien à partir des propriétés d'un noeud
 
     .row[
@@ -283,7 +288,7 @@
 
     class: slides
 
-    # Cadre prédictif
+    # Prédire un lien
 
     .row[
     .col-md-12.text-center[
@@ -409,7 +414,6 @@
     ]
     ]
     ![:scale 100%](./img/coOcc2.jpg)
-    .small[Mediawiki]
     ]
     ]
 
@@ -485,13 +489,11 @@
 
     ]
     .col-md-6[
-    #### Plusieurs méthodes:
+    #### Plusieurs méthodes existent en écologie:
 
-    - Machine learning (approche fréquentiste):
-      - apprentissage supervisé
-      - apprentissage non-supervisé
-    - Méthodes orientées par les données (approche bayésiennes)
-    - Méthodes orientées basées sur la correpondance entre traits (approche fréquentistes)
+    - 2 méthodes de Machine learning *(approche informatique)*
+    - 3 méthodes orientées par les données *(approche bayésienne)*
+    - 6 méthodes basées sur la correspondance entre traits *(approche fréquentiste)*
 
     ]
     ]
@@ -568,14 +570,35 @@
     <iframe src="./network.html" width="100%" height="500px" frameBorder="0"></iframe>
     ]
     .col-md-5[
-    <br>
-    #### **Objectif:** Développer un package R permettant de prédire les interactions entre espèces
+    #### Développer un package R permettant de prédire les interactions entre espèces
 
-    #### **Défis** reliés aux problématiques:
+    #### **Les objectifs**:
+
+    - Rendre les analyses de réseaux davantage reproductible
+    - Permettre la comparaison méthodologique
+
+    ]
+    ]
+
+    ---
+
+    class: slides, middle
+
+    # Le projet Alien...
+    ### Une initiative d'un réseau de collaborateurs
+
+    .row[
+    .col-md-7[
+    <iframe src="./network.html" width="100%" height="500px" frameBorder="0"></iframe>
+    ]
+    .col-md-5[
+    #### Développer un package R permettant de prédire les interactions entre espèces
+
+    #### **Les défis**:
 
     1. Générer un format standard de données propre au package
     2. Implémenter les différentes méthodes avec une structure de sortie uniforme
-    3. Développer des outils d'évaluation des modèles
+    3. Développer des outils d'évaluation/diagnostique des modèles
     ]
     ]
 
@@ -592,11 +615,11 @@
     ]
     .col-md-5[
 
-    #### Phase de développement
+    #### **Les bonnes pratiques du développeur:**
 
     - Intégration d'un système de contrôle de version (Git)
     - Utilisation de tests unitaires pour le contrôle de qualité du code (package `testhat`)
-    - Construction du package avec les tests à chaque modifications du code (`codecov`,`appveyor`,`travis CI`)
+    - Construction du package à chaque modifications du code (`codecov`,`appveyor`,`travis CI`)
     - [Dépot sur GitHub](https://github.com/TheoreticalEcosystemEcology/alien)
     ]
     ]
@@ -610,7 +633,10 @@
     ### Le package R
 
     .col-md-12[
-    ![:scale 100%](./img/workflow.jpg)
+    <br>
+    <br>
+    <br>
+    ![:scale 100%](./img/workflow2.jpg)
     ]
 
 
@@ -619,44 +645,25 @@
     class: slides
 
     # Le projet Alien...
-    ### Étape 1: Reformattage
+    ### Étape 1: Formatage des données
 
     #### Structure de l'objet `alienData`
+
+    .row[
+    .col-md-6[
 
     ```r
     > str(bartomeus)
     List of 10
-     $ idObs       :'data.frame':	2938 obs. of  4 variables:
-      ..$ idSite: Factor w/ 16 levels "Aznalcazar","Bonares",..: 1 1 1 1 1 1 1 16 16 15 ...
-      ..$ idTime: Factor w/ 7 levels "1","2","3","4",..: 1 1 1 1 1 1 1 1 1 1 ...
-      ..$ idSp  : Factor w/ 331 levels "Acacia adealbata",..: 46 40 59 46 46 46 59 46 272 40 ...
-      ..$ idInd : Factor w/ 2938 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
-     $ interactPair:'data.frame':	1469 obs. of  3 variables:
-      ..$ idTo    : Factor w/ 1469 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
-      ..$ idFrom  : Factor w/ 1469 levels "1470","1471",..: 1 2 3 4 5 6 7 8 9 10 ...
-      ..$ strength: int [1:1469] 11 2 4 14 12 3 1 36 1 1 ...
-     $ interactSp  : int [1:331, 1:331] NA NA NA NA NA NA NA NA NA NA ...
-      ..- attr(*, "dimnames")=List of 2
-      .. ..$ : chr [1:331] "Acacia adealbata" "Acmaeoderella adspersula" "Agapanthia asphodeli" "Amegilla albigena" ...
-      .. ..$ : chr [1:331] "Acacia adealbata" "Acmaeoderella adspersula" "Agapanthia asphodeli" "Amegilla albigena" ...
-     $ interactInd : int [1:2938, 1:2938] 11 NA NA NA NA NA NA NA NA NA ...
-      ..- attr(*, "dimnames")=List of 2
-      .. ..$ : chr [1:2938] "1" "2" "3" "4" ...
-      .. ..$ : chr [1:2938] "1" "2" "3" "4" ...
-     $ coOcc       : num [1:331, 1:331] 1 0 0 0 0 0 0 0 0 0 ...
-      ..- attr(*, "dimnames")=List of 2
-      .. ..$ : chr [1:331] "Acacia adealbata" "Acmaeoderella adspersula" "Agapanthia asphodeli" "Amegilla albigena" ...
-      .. ..$ : chr [1:331] "Acacia adealbata" "Acmaeoderella adspersula" "Agapanthia asphodeli" "Amegilla albigena" ...
+     $ idObs       :'data.frame'
+     $ interactPair:'data.frame'
+     $ interactSp  : int [1:331, 1:331] ...
+     $ interactInd : int [1:2938, 1:2938] ...
+     $ coOcc       : num [1:331, 1:331] ...
      $ coAbund     : NULL
      $ siteEnv     : NULL
-     $ traitSp     :'data.frame':	830 obs. of  3 variables:
-      ..$ idSp     : Factor w/ 331 levels "Acacia adealbata",..: 1 8 32 48 49 51 52 74 78 88 ...
-      ..$ traitName: Factor w/ 7 levels "flower_morphology",..: 1 1 1 1 1 1 1 1 1 1 ...
-      ..$ value    : chr [1:830] "Actinomorphic" "Actinomorphic" "Actinomorphic" "Actinomorphic" ...
-     $ traitInd    :'data.frame':	1469 obs. of  3 variables:
-      ..$ idInd    : Factor w/ 1469 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
-      ..$ traitName: Factor w/ 1 level "sex": 1 1 1 1 1 1 1 1 1 1 ...
-      ..$ value    : chr [1:1469] "worker" "male" "queen" "worker" ...
+     $ traitSp     :'data.frame'
+     $ traitInd    :'data.frame'
      $ phy         : NULL
      - attr(*, "coOccSource")= chr "idObs"
      - attr(*, "scaleSiteEnv")= logi FALSE
@@ -665,6 +672,24 @@
      - attr(*, "interceptTrait")= logi FALSE
      - attr(*, "class")= chr "alienData"
     ```
+    ]
+    .col-md-6[
+
+    ### 2 jeux de données disponibles:
+
+    <br>
+
+    #### 1. Bartomeus *et al*, 2017
+
+    - Données collectées en Espagne (Séville)
+    - 273 pollinisateurs
+    - 54 plantes
+    - 2938 individus
+    - 1469 interactions
+    - Phylogénie des espèces disponible
+
+    ]
+    ]
 
 
     ---
@@ -672,28 +697,86 @@
     class: slides
 
     # Le projet Alien...
-    ### Étape 2: Intégration méthodologique
+    ### Étape 1: Formatage des données
+
+    #### Structure de l'objet `alienData`
+
+    .row[
+    .col-md-6[
+
+    ```r
+    > str(bartomeus)
+    List of 10
+     $ idObs       :'data.frame'
+     $ interactPair:'data.frame'
+     $ interactSp  : int [1:331, 1:331] ...
+     $ interactInd : int [1:2938, 1:2938] ...
+     $ coOcc       : num [1:331, 1:331] ...
+     $ coAbund     : NULL
+     $ siteEnv     : NULL
+     $ traitSp     :'data.frame'
+     $ traitInd    :'data.frame'
+     $ phy         : NULL
+     - attr(*, "coOccSource")= chr "idObs"
+     - attr(*, "scaleSiteEnv")= logi FALSE
+     - attr(*, "scaleTrait")= logi FALSE
+     - attr(*, "interceptSiteEnv")= logi FALSE
+     - attr(*, "interceptTrait")= logi FALSE
+     - attr(*, "class")= chr "alienData"
+    ```
+    ]
+    .col-md-6[
+
+    ### 2 jeux de données disponibles:
+
+    <br>
+
+    #### 2. Kolpeke *et al*, 2017
+
+    - 30 ans de données collectées à travers l'Europe
+    - 374 sites
+    - 52 Saules
+    - 91 parasites du saule
+    - 125 Parasitoïdes
+
+    ]
+    ]
+
+    ---
+
+    class: slides
+
+    # Le projet Alien...
+    ### Étape 2 et 3: Intégration méthodologique
 
     - Exemple de sorties de modèles
     - Figures de Kévin
 
-
     ---
 
-    class: slides, middle
+    class: slides
 
     # En résumé
     ## Le projet Alien...
 
 
-    ### Implications
+    - Un effort de groupe (10 écologistes)
+    - Package pour prédire les interactions dans un réseau écologique (11 méthodes)
+    - Permet de reconstruire un réseau suite à l'ajout et/ou retrait d'espèces dans une communauté
 
-    - Reconstruire les réseaux (contexte de CC, réassemblage des communautés)
-    - Espèces invasives, Extinction locale
-
+    <br>
     ### Développements futurs
 
-    - D
+    - Décisions à venir: Objet de type S4?
+    - Intégration des méthodes des 10 méthodes restantes
+    - Définir la structure de sortie (objet `alienFit`)
+    - En bref, beaucoup de travail en perspective...
+
+    ---
+
+    class: slides, transition, middle, center
+
+    <h1 style="font-size:50px !important">Merci !</h1>
 
 
 
@@ -724,7 +807,7 @@
   </body>
 </html>
 
-
+<!--
 
 SORTIE STANDARD: Par des pairs d'espèces
 WRAPPER: PREDICT (ajout de nouvelle espèce, reconstruction du réseau)
@@ -734,9 +817,8 @@ WRAPPER: PREDICT (ajout de nouvelle espèce, reconstruction du réseau)
   - Objectif de comparaison
 - OUTILS INTERPRÉTATION DES RÉSEAU PROBABILISTE
 - INTÉGRATION DE TOUTES LES MÉTHODES
-
 - DÉFI SUR LE TRAITEMENT DES DONNÉES
 - Multidimensionnel
 - SP
 
-- Objet
+- Objet -->
